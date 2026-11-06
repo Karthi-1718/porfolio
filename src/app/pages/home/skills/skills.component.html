@@ -1,0 +1,74 @@
+<section id="skills" class="skills-section">
+  <!-- Background glow -->
+  <div class="skills-bg-glow" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="section-header reveal-up">
+      <p class="section-label">Technical Skills</p>
+      <h2 class="section-title">
+        My <span class="gradient-text">Expertise</span>
+      </h2>
+      <p class="section-subtitle">
+        A curated set of technologies I work with to build robust, scalable systems.
+      </p>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="category-tabs reveal-up" data-delay="200">
+      <button
+        *ngFor="let cat of categories"
+        class="cat-tab"
+        [class.active]="activeCategory === cat.id"
+        [style.--cat-color]="cat.color"
+        (click)="setCategory(cat.id)"
+      >
+        <span class="cat-icon">{{ cat.icon }}</span>
+        <span>{{ cat.label }}</span>
+      </button>
+    </div>
+
+    <!-- Skills panel -->
+    <div class="skills-panel glass-card reveal-up" data-delay="300">
+      <div class="skills-grid">
+        <div
+          *ngFor="let skill of activeSkills; let i = index"
+          class="skill-item"
+          [style.animation-delay]="(i * 0.05) + 's'"
+        >
+          <div class="skill-header">
+            <span class="skill-name">{{ skill.name }}</span>
+            <span class="skill-level" [style.color]="getLevelColor(skill.level)">
+              {{ skill.level }}
+            </span>
+          </div>
+          <div class="skill-bar-bg">
+            <div
+              class="skill-bar-fill"
+              [style.width.%]="getLevelWidth(skill.level)"
+              [style.background]="getLevelColor(skill.level)"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All skills overview grid -->
+    <div class="all-skills-grid">
+      <div
+        *ngFor="let cat of categories; let ci = index"
+        class="all-skill-category glass-card reveal-up"
+        [attr.data-delay]="ci * 100"
+      >
+        <div class="all-cat-header">
+          <span class="all-cat-icon">{{ cat.icon }}</span>
+          <span class="all-cat-label" [style.color]="cat.color">{{ cat.label }}</span>
+        </div>
+        <div class="all-cat-skills">
+          <span *ngFor="let skill of cat.skills" class="skill-pill">
+            {{ skill.name }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

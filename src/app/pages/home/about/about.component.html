@@ -1,0 +1,93 @@
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- Left: Profile Visual -->
+      <div class="about-visual reveal-left">
+        <div class="profile-card glass-card">
+          <div class="profile-avatar">
+            <div class="avatar-ring"></div>
+            <div class="avatar-inner">
+              <span class="avatar-initials">KK</span>
+            </div>
+            <div class="avatar-status">
+              <span class="pulse-dot"></span>
+              Available
+            </div>
+          </div>
+
+          <div class="profile-info">
+            <h3 class="profile-name">Karthikeyan K</h3>
+            <p class="profile-title">API Developer · Backend Engineer</p>
+            <p class="profile-location">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Tamil Nadu, India
+            </p>
+          </div>
+
+          <div class="core-values">
+            <span *ngFor="let v of coreValues" class="core-value-tag">
+              {{ v.icon }} {{ v.label }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Floating decoration -->
+        <div class="about-deco-1 animate-float"></div>
+        <div class="about-deco-2 animate-float" style="animation-delay: 1s;"></div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="about-content">
+        <p class="section-label reveal-up" data-delay="100">About Me</p>
+        <h2 class="section-title reveal-up" data-delay="200">
+          Passionate about<br/>
+          <span class="gradient-text">Backend Engineering</span>
+        </h2>
+
+        <p class="about-para reveal-up" data-delay="300">
+          I'm Karthikeyan, an MCA graduate and aspiring API Developer passionate about
+          backend engineering, API development, database integration, and building
+          scalable applications.
+        </p>
+        <p class="about-para reveal-up" data-delay="400">
+          I enjoy developing secure REST APIs, designing backend architectures,
+          integrating databases, and solving real-world technical problems. My goal is
+          to build systems that are robust, maintainable, and efficient.
+        </p>
+
+        <!-- Highlights grid -->
+        <div class="highlights-grid">
+          <div
+            *ngFor="let h of highlights; let i = index"
+            class="highlight-card glass-card reveal-up"
+            [attr.data-delay]="500 + i * 80"
+          >
+            <span class="highlight-icon">{{ h.icon }}</span>
+            <div>
+              <div class="highlight-label">{{ h.label }}</div>
+              <div class="highlight-desc">{{ h.desc }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-actions reveal-up" data-delay="800">
+          <a
+            href="#contact"
+            class="btn-primary"
+            (click)="$event.preventDefault(); scrollTo('contact')"
+          >
+            Let's Connect
+          </a>
+          <a href="#experience" class="btn-secondary"
+            (click)="$event.preventDefault(); scrollTo('experience')">
+            View Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

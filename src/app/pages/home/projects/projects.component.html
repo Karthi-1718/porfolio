@@ -1,0 +1,141 @@
+<section id="projects" class="projects-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="section-header reveal-up">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">
+        Things I've <span class="gradient-text">Built</span>
+      </h2>
+      <p class="section-subtitle">
+        A selection of real-world projects showcasing my skills in backend development, API design, and full-stack engineering.
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      <article
+        *ngFor="let project of projects; let i = index"
+        class="project-card glass-card reveal-up"
+        [attr.data-delay]="i * 120"
+        (click)="openModal(project)"
+        (keydown.enter)="openModal(project)"
+        tabindex="0"
+        role="button"
+        [attr.aria-label]="'View ' + project.title + ' details'"
+      >
+        <!-- Card header / visual -->
+        <div class="project-visual" [style.background]="project.imageColor">
+          <div class="project-visual-pattern"></div>
+          <div class="project-visual-code">
+            <span class="code-line">POST /api/{{ project.id }}</span>
+            <span class="code-response">200 OK</span>
+          </div>
+          <div class="project-category-badge" [style.border-color]="getCategoryColor(project.category)" [style.color]="getCategoryColor(project.category)">
+            {{ project.category }}
+          </div>
+        </div>
+
+        <!-- Card body -->
+        <div class="project-body">
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+
+          <!-- Technologies -->
+          <div class="project-tech">
+            <span *ngFor="let tech of project.technologies.slice(0, 4)" class="tech-badge">
+              {{ tech }}
+            </span>
+            <span *ngIf="project.technologies.length > 4" class="tech-badge more">
+              +{{ project.technologies.length - 4 }}
+            </span>
+          </div>
+
+          <!-- Actions -->
+          <div class="project-actions">
+            <a
+              [href]="project.githubUrl"
+              target="_blank"
+              rel="noopener"
+              class="project-link"
+              (click)="$event.stopPropagation()"
+              title="⚠️ Placeholder — replace with actual GitHub URL"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              GitHub
+            </a>
+            <a
+              [href]="project.demoUrl"
+              target="_blank"
+              rel="noopener"
+              class="project-link primary"
+              (click)="$event.stopPropagation()"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Live Demo
+            </a>
+            <button class="project-details-btn" (click)="openModal(project); $event.stopPropagation()">
+              Details →
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Project Details Modal -->
+  <div
+    class="modal-overlay"
+    [class.open]="selectedProject()"
+    (click)="closeModal()"
+    role="dialog"
+    [attr.aria-hidden]="!selectedProject()"
+    aria-modal="true"
+  >
+    <div class="modal-panel glass-card" (click)="$event.stopPropagation()" *ngIf="selectedProject()">
+      <button class="modal-close" (click)="closeModal()" aria-label="Close modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="modal-header" [style.background]="selectedProject()!.imageColor">
+        <span class="modal-category" [style.color]="getCategoryColor(selectedProject()!.category)">
+          {{ selectedProject()!.category }}
+        </span>
+        <h2 class="modal-title">{{ selectedProject()!.title }}</h2>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-description">{{ selectedProject()!.description }}</p>
+
+        <div class="modal-section">
+          <h4 class="modal-section-title">Technologies Used</h4>
+          <div class="modal-tech-list">
+            <span *ngFor="let tech of selectedProject()!.technologies" class="tech-badge">{{ tech }}</span>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <a [href]="selectedProject()!.githubUrl" target="_blank" rel="noopener" class="btn-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            View on GitHub ⚠️ Placeholder
+          </a>
+          <a [href]="selectedProject()!.demoUrl" target="_blank" rel="noopener" class="btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            Live Demo ⚠️ Placeholder
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

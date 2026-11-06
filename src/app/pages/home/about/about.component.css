@@ -1,0 +1,239 @@
+:host { display: block; }
+
+.about-section {
+  padding: 120px 0;
+  background: #050508;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* Profile card */
+.profile-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+}
+
+.profile-avatar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-ring {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #3b82f6, #7c3aed) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  animation: rotateBorder 6s linear infinite;
+}
+
+@keyframes rotateBorder {
+  to { transform: rotate(360deg); }
+}
+
+.avatar-inner {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1e3a5f, #3730a3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.avatar-initials {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.avatar-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin-bottom: 4px;
+}
+
+.profile-title {
+  font-size: 0.8125rem;
+  color: #60a5fa;
+  margin-bottom: 10px;
+}
+
+.profile-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+  font-size: 0.8125rem;
+  color: #64748b;
+}
+
+.core-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.core-value-tag {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(26, 31, 53, 0.8);
+  border-radius: 20px;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+/* Decorations */
+.about-visual {
+  position: relative;
+}
+
+.about-deco-1 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 50%;
+  top: -20px;
+  right: -20px;
+  pointer-events: none;
+}
+
+.about-deco-2 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 8px;
+  bottom: -15px;
+  left: -15px;
+  pointer-events: none;
+  transform: rotate(20deg);
+}
+
+/* Content */
+.about-content {}
+
+.about-para {
+  color: #94a3b8;
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+/* Highlights */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 32px 0;
+}
+
+.highlight-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-2px);
+}
+
+.highlight-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.highlight-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 2px;
+}
+
+.highlight-desc {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.about-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .about-visual {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section { padding: 80px 0; }
+  .container { padding: 0 20px; }
+  .highlights-grid { grid-template-columns: 1fr; }
+  .about-actions { flex-direction: column; }
+  .about-actions .btn-primary,
+  .about-actions .btn-secondary { justify-content: center; }
+}

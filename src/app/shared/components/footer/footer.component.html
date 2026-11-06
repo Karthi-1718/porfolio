@@ -1,0 +1,72 @@
+<footer class="footer">
+  <!-- Background glow -->
+  <div class="footer-glow"></div>
+
+  <div class="footer-container">
+    <!-- Top section -->
+    <div class="footer-top">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="brand-name gradient-text">KARTHIKEYAN</div>
+        <div class="brand-title">API Developer · MCA Graduate</div>
+        <p class="brand-desc">
+          Building scalable backend systems, robust REST APIs, and reliable web applications.
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <div class="footer-links-group">
+        <h4 class="footer-links-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#about" (click)="scrollTo('#about'); $event.preventDefault()">About</a></li>
+          <li><a href="#skills" (click)="scrollTo('#skills'); $event.preventDefault()">Skills</a></li>
+          <li><a href="#projects" (click)="scrollTo('#projects'); $event.preventDefault()">Projects</a></li>
+          <li><a href="#experience" (click)="scrollTo('#experience'); $event.preventDefault()">Experience</a></li>
+          <li><a href="#contact" (click)="scrollTo('#contact'); $event.preventDefault()">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div class="footer-links-group">
+        <h4 class="footer-links-heading">Connect</h4>
+        <div class="social-links">
+          <a *ngFor="let link of socialLinks" [href]="link.href" target="_blank" rel="noopener noreferrer" class="social-link" [attr.aria-label]="link.label">
+            <!-- GitHub icon -->
+            <svg *ngIf="link.icon === 'github'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            <!-- LinkedIn icon -->
+            <svg *ngIf="link.icon === 'linkedin'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+            <!-- Mail icon -->
+            <svg *ngIf="link.icon === 'mail'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>{{ link.label }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Bottom section -->
+    <div class="footer-bottom">
+      <p class="copyright">
+        © {{ currentYear }} Karthikeyan K. All rights reserved.
+        <span class="separator">·</span>
+        Built with Angular &amp; Node.js
+      </p>
+      <button class="back-to-top" (click)="scrollToTop()" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"/>
+        </svg>
+        Top
+      </button>
+    </div>
+  </div>
+</footer>

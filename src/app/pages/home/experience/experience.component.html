@@ -1,0 +1,70 @@
+<section id="experience" class="experience-section">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <p class="section-label">Journey</p>
+      <h2 class="section-title">
+        Experience &amp; <span class="gradient-text">Education</span>
+      </h2>
+      <p class="section-subtitle">
+        My professional journey and academic background that shaped my technical expertise.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <!-- Timeline line -->
+      <div class="timeline-center-line" aria-hidden="true"></div>
+
+      <div
+        *ngFor="let entry of entries; let i = index"
+        class="timeline-entry"
+        [class.left]="i % 2 === 0"
+        [class.right]="i % 2 !== 0"
+      >
+        <!-- Timeline dot -->
+        <div class="timeline-dot" [class.work]="entry.type === 'work'" [class.education]="entry.type === 'education'">
+          <svg *ngIf="entry.type === 'work'" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+          <svg *ngIf="entry.type === 'education'" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+
+        <!-- Card -->
+        <div class="timeline-card glass-card reveal-up" [attr.data-delay]="i * 150">
+          <!-- Card header -->
+          <div class="card-header">
+            <span class="entry-type-badge" [class.work]="entry.type === 'work'">
+              {{ entry.type === 'work' ? '💼 Work' : '🎓 Education' }}
+            </span>
+            <span class="entry-period">{{ entry.period }}</span>
+          </div>
+
+          <h3 class="entry-title">{{ entry.title }}</h3>
+          <div class="entry-org">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            {{ entry.organization }}
+          </div>
+          <div class="entry-location" *ngIf="entry.location">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+            {{ entry.location }}
+          </div>
+
+          <!-- Description bullets -->
+          <ul class="entry-bullets">
+            <li *ngFor="let bullet of entry.description">{{ bullet }}</li>
+          </ul>
+
+          <!-- Tech tags -->
+          <div class="entry-tech" *ngIf="entry.technologies?.length">
+            <span *ngFor="let tech of entry.technologies" class="tech-badge small">{{ tech }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

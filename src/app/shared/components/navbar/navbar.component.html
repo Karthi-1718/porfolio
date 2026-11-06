@@ -1,0 +1,72 @@
+<nav
+  class="navbar"
+  [class.scrolled]="isScrolled"
+  role="navigation"
+  aria-label="Main navigation"
+>
+  <!-- Logo -->
+  <a class="nav-logo" href="#hero" (click)="scrollTo('#hero'); $event.preventDefault()">
+    <span class="gradient-text font-black text-xl tracking-widest">K.</span>
+    <span class="text-slate-400 text-sm font-mono ml-1 hidden sm:inline">Karthikeyan</span>
+  </a>
+
+  <!-- Desktop Nav -->
+  <ul class="nav-links hidden md:flex" role="list">
+    <li *ngFor="let link of navLinks">
+      <a
+        [href]="link.href"
+        class="nav-link"
+        [class.active]="activeSection === link.href.replace('#', '')"
+        (click)="scrollTo(link.href); $event.preventDefault()"
+      >
+        {{ link.label }}
+      </a>
+    </li>
+  </ul>
+
+  <!-- CTA -->
+  <a
+    href="#contact"
+    class="btn-primary hidden md:inline-flex text-sm py-2 px-5"
+    (click)="scrollTo('#contact'); $event.preventDefault()"
+  >
+    Hire Me
+  </a>
+
+  <!-- Mobile Hamburger -->
+  <button
+    class="mobile-menu-btn md:hidden"
+    (click)="toggleMobileMenu()"
+    [attr.aria-expanded]="isMobileMenuOpen"
+    aria-label="Toggle menu"
+  >
+    <span class="hamburger-line" [class.open]="isMobileMenuOpen"></span>
+    <span class="hamburger-line" [class.open]="isMobileMenuOpen"></span>
+    <span class="hamburger-line" [class.open]="isMobileMenuOpen"></span>
+  </button>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.open]="isMobileMenuOpen">
+    <ul role="list" class="mobile-nav-list">
+      <li *ngFor="let link of navLinks; let i = index">
+        <a
+          [href]="link.href"
+          class="mobile-nav-link"
+          [style.animation-delay]="(i * 0.05) + 's'"
+          (click)="scrollTo(link.href); $event.preventDefault()"
+        >
+          {{ link.label }}
+        </a>
+      </li>
+      <li>
+        <a
+          href="#contact"
+          class="btn-primary w-full justify-center mt-4"
+          (click)="scrollTo('#contact'); $event.preventDefault()"
+        >
+          Hire Me
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
