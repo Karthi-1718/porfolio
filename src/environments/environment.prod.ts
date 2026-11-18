@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-backend-url.com', // Replace with your deployed backend URL
+  apiUrl: 'https://portfolio-back-c94f.onrender.com' // Replace with your deployed backend URL
 };
